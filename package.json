@@ -1,0 +1,25 @@
+{
+  "name": "slack-bot-nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start:dev": "nodemon --watch '*.ts' --exec 'ts-node' app.ts",
+    "test": "mocha --require ts-node/register --watch-extensions ts 'test/**/*.spec.ts'",
+    "test:watch": "yarn test -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.10.6",
+    "@types/sinon": "^17.0.2",
+    "chai": "^5.0.0",
+    "mocha": "^10.2.0",
+    "nodemon": "^3.0.2",
+    "sinon": "^17.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}
