@@ -2,6 +2,7 @@ import * as dotenv from "dotenv";
 
 import { App, SocketModeReceiver } from "@slack/bolt";
 
+import CommandLoader from "./commands/command-loader";
 import EventLoader from "./events/event-loader";
 
 dotenv.config();
@@ -19,6 +20,7 @@ const app = new App({
 
 (async () => {
   EventLoader.loadAll(app);
+  CommandLoader.load(app, process.env.SLACK_COMMAND_PATH!);
   await app.start(process.env.PORT || 3000);
 
   console.log("⚡️ Bolt app is running!");
