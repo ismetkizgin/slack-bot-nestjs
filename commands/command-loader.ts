@@ -1,5 +1,6 @@
 import { App, SlackCommandMiddlewareArgs } from "@slack/bolt";
 
+import BlockFactory from "../utils/blocks/block-factory";
 import CommandsHandlers from "./handlers";
 
 export default class CommandLoader {
@@ -19,7 +20,11 @@ export default class CommandLoader {
         if (!command.validateArgs()) throw new Error("Invalid arguments");
         await command.handleAsync();
       } catch (error: any) {
-        await context.say("Error: " + error.message);
+        await app.client.chat.postMessage({
+          text: "Error Message",
+          channel: context.command.channel_id,
+          blocks: BlockFactory.getBlock("ERROR", { message: error.message }),
+        });
       }
     });
     console.log(`Command Load: ${commandPath}`);
